@@ -1,0 +1,195 @@
+[
+  {
+    "label": "Welcome, traveler. This world is shaped by your choices, dreams, and boundaries.\nWhat's your character's name, How should I call you? (name, nickname, pronouns)?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "name",
+    "target": "user_profile",
+    "render": "text"
+  },
+  {
+    "label": "How old is your character in this story world? (realistic or imaginary age is fine)",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "age",
+    "target": "user_profile",
+    "render": "text"
+  },
+  {
+    "label": "What gender best fits your character? (Male, Female, Non-binary, or a custom identity like a fantasy creature or alien being)",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "gender",
+    "target": "user_profile",
+    "options": [
+      { "key": 1, "value": "Male" },
+      { "key": 2, "value": "Female" },
+      { "key": 3, "value": "Non Binary" },
+      { "key": 4, "value": "Something else" }
+    ],
+    "render": "radio"
+  },
+  {
+    "label": "Please describe your custom gender (e.g. wolf, alien, god, robot)",
+    "condition": "gender == 'Something else'",
+    "mandatory": "yes",
+    "field": "other_gender",
+    "target": "user_profile",
+    "render": "textarea"
+  },
+  {
+    "label": "What genders is your character attracted to?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "orientation",
+    "target": "user_profile",
+    "options": [
+      { "key": 1, "value": "Male" },
+      { "key": 2, "value": "Female" },
+      { "key": 3, "value": "Both" },
+      { "key": 4, "value": "Trans women (MTF)" },
+      { "key": 5, "value": "Trans men (FTM)" },
+      { "key": 6, "value": "Sapiosexual" },
+      { "key": 7, "value": "All" }
+    ],
+    "render": "radio"
+  },
+  {
+    "label": "What is your character’s main fantasy or goal in this world?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "goal",
+    "target": "user_profile",
+    "render": "textarea"
+  },
+  {
+    "label": "What is your character's weight, in kilograms?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "weight_kg",
+    "target": "user_profile",
+    "render": "text"
+  },
+  {
+    "label": "How tall is your character, in centimeters?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "height_cm",
+    "target": "user_profile",
+    "render": "text"
+  },
+  {
+    "label": "How would you describe your character in a few words? (e.g. submissive, confident, curious)",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "traits",
+    "target": "user_profile",
+    "render": "textarea"
+  },
+  {
+    "label": "What kinks or fetishes would you like to explore if any? (answer none if you don't have any kinks or fetishes)",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "kinks_fetishes",
+    "target": "user_profile",
+    "render": "textarea"
+  },
+  {
+    "label": "What are your limits or things you want to avoid?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "limits",
+    "target": "user_profile",
+    "render": "textarea"
+  },
+  {
+    "label": "Which voice would you like to hear the narration in — male or female?",
+    "description": "This affects the AI narrator’s voice, not your character’s.",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "voice_preference",
+    "target": "ai_profile",
+    "options": [
+      { "key": 1, "value": "Male" },
+      { "key": 2, "value": "Female" }
+    ],
+    "render": "radio"
+  },
+  {
+    "label": "🌟 Choose Your Starting Vibe",
+    "description": "This sets the *tone and energy* of how the story begins. It tells the AI what kind of experience you’re in the mood for — soft, playful, wild, or surprising.",
+	"mandatory": "yes",
+    "field": "vibe",
+    "target": "ai_profile",
+    "options": [
+      { "key": 1, "value": "🌱 Soft story — imagination, emotion, discovery" },
+      { "key": 2, "value": "🎓 Educational journey — sexuality, identity, relationships" },
+      { "key": 3, "value": "🔥 Fantasy playground — wild, kinky, or unbound" },
+      { "key": 4, "value": "🎲 Not sure — surprise me gently" }
+    ],
+    "render": "radio"
+  },
+  {
+    "label": "🛡️ Set Your Comfort Level",
+    "description": "This tells us *how far you're comfortable going*. It's about your personal boundaries — not the vibe of the AI. You’re always in control.",
+	"mandatory": "yes",
+    "field": "content_settings",
+    "target": "user_profile",
+    "options": [
+      { "key": 1, "value": "✅ Yes — I want to choose my boundaries" },
+      { "key": 2, "value": "🛡️ Yes, but please start gentle only" },
+      { "key": 3, "value": "⏩ No — surprise me, but stay soft at first" }
+    ],
+    "render": "radio"
+  },
+  {
+    "label": "✨ Choose the types of content you're comfortable exploring",
+    "description": "You can select as many as you'd like. These help us shape the story to match your comfort zone.",
+	"mandatory": "yes",
+    "field": "content_types",
+    "target": "user_profile",
+    "options": [
+      {
+        "key": "romance",
+        "label": "❤️ Romance",
+        "description": "Emotional connection, love stories, affectionate intimacy"
+      },
+      {
+        "key": "friendship",
+        "label": "👫 Friendship",
+        "description": "Close relationships, bonding moments, platonic love"
+      },
+      {
+        "key": "emotional_growth",
+        "label": "🌿 Emotional Growth",
+        "description": "Personal transformation, vulnerability, inner strength"
+      },
+      {
+        "key": "light_touch",
+        "label": "🕊️ Light Touch",
+        "description": "Mild sensuality, tender contact, subtle eroticism"
+      },
+      {
+        "key": "fantasy_roleplay",
+        "label": "🧙 Fantasy Roleplay",
+        "description": "Imaginary worlds, character dynamics, magical scenarios"
+      },
+      {
+        "key": "power_play",
+        "label": "🕹️ Power Play",
+        "description": "Control and surrender, domination and submission (consensual only)"
+      },
+      {
+        "key": "fetish_themes",
+        "label": "🎭 Fetish Themes",
+        "description": "Kinks, taboo exploration, alternative desires"
+      },
+      {
+        "key": "body_exploration",
+        "label": "🧍 Body Exploration",
+        "description": "Sensual focus on touch, anatomy, and physical sensation"
+      }
+    ],
+    "render": "checkbox"
+  }
+]

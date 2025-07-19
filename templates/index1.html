@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>As You Wish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/static/tailwindcss.js"></script>
+    <script src="/static/alpine.min.js" defer></script>
+    <script defer src="/static/site.js"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gray-800 text-white px-6 py-4 flex items-center justify-between">
+		<h1 class="text-2xl font-bold">✨ As You Wish</h1>
+
+
+        <nav class="space-x-4">
+            {% if username %}
+                <a href="#" onclick="openCharacterCreationPanel()" class="hover:underline">New Character</a>
+                <a href="/load_character" class="hover:underline">Load Character</a>
+                <a href="/new_fantasy" class="hover:underline">New Fantasy</a>
+                <a href="/continue" class="hover:underline">Continue</a>
+                <a href="/logout" class="hover:underline text-red-400">Logout</a>
+            {% else %}
+                <a href="/login" class="hover:underline">Login</a>
+                <a href="/register" class="hover:underline">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+        <!-- Text Section -->
+        <section id="story-section" class="bg-gray-800 rounded-lg p-4 shadow-lg overflow-y-auto h-[75vh]">
+            <h2 class="text-xl font-semibold mb-2">Your Story</h2>
+            <div id="story-box" class="space-y-2 text-gray-200">
+                <p>Welcome to the realm of desire and imagination.</p>
+            </div>
+            <div class="mt-4">
+                <input type="text" placeholder="Type your fantasy..." class="w-full p-2 bg-gray-700 text-white rounded border border-gray-600">
+            </div>
+        </section>
+	<section id="character-creation-section" class="hidden bg-gray-800 rounded-lg p-4 shadow-lg overflow-y-auto h-[75vh]">
+	</section>
+        <!-- Image Section -->
+        <section class="bg-gray-800 rounded-lg p-4 shadow-lg flex items-center justify-center">
+            <img src="/static/Corwin4.jpeg" alt="Scene Image" class="rounded max-h-[70vh] object-cover">
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center text-sm text-gray-400 py-2">
+        &copy; 2025 As You Wish. All rights reserved.
+    </footer>
+
+    <div id="characterPanel" class="fixed left-0 top-0 h-full w-[400px] bg-gray-900 text-white shadow-xl overflow-y-auto scroll-smooth p-4 hidden z-50">
+        <button onclick="closePanel()" class="text-right w-full text-red-400 mb-4">Close ✖</button>
+
+
+        <div id="characterFormArea"></div>
+    </div>
+
+</body>
+</html>

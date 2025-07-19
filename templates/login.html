@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+    <form id="loginForm" class="bg-gray-800 p-6 rounded shadow-md space-y-4 w-full max-w-sm">
+        <h1 class="text-2xl font-bold text-center">Login</h1>
+        <input name="username" type="text" placeholder="Username" class="w-full p-2 bg-gray-700 rounded" required>
+        <input name="password" type="password" placeholder="Password" class="w-full p-2 bg-gray-700 rounded" required>
+        <p id="errorMessage" class="text-red-500 text-sm text-center mb-4 hidden"></p>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 py-2 rounded">Login</button>
+        <p class="text-center text-sm mt-2">No account? <a href="/register" class="text-blue-400 hover:underline">Register</a></p>
+    </form>
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = {
+            username: form.username.value,
+            password: form.password.value
+        };
+
+        const res = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        let result = {};
+        try {
+            result = await res.json();
+        } catch (err) {
+            document.getElementById('errorMessage').textContent = "Unexpected server error.";
+            document.getElementById('errorMessage').classList.remove('hidden');
+            return;
+        }
+
+        if (result.error) {
+            document.getElementById('errorMessage').textContent = result.error;
+            document.getElementById('errorMessage').classList.remove('hidden');
+        } else if (result.redirect) {
+            window.location.href = result.redirect;
+        }
+    });
+    </script>
+</body>
+</html>

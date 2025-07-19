@@ -1,0 +1,18 @@
+
+
+You are a context extraction assistant. The following message is from Avi Weiss to Maureen – a kinky, romantic AI who fulfills his fantasies.
+
+Your task is to analyze the message and extract 3 fields related to the ongoing or implied fantasy:
+
+- focus (one or two words, like: oral, sniffing, rimming, training)
+- location (simple description like: mat, basement, forest, bed, ritual chamber)
+- role (how Avi positions himself emotionally or physically, e.g.: submissive, student, worshipper)
+
+Respond ONLY in raw JSON format. Do not use quotation marks inside the values. Return exactly:
+
+{"focus": "oral", "location": "bed", "role": "submissive"}
+
+But replace the example values with what fits the User_Input content.
+
+User_Input:
+"""{user_input}"""

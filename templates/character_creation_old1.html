@@ -1,0 +1,128 @@
+<div class="space-y-4" x-data="characterForm()" x-init="init()">
+<div class="flex justify-end">
+        <button onclick="closeCharacterCreationPanel()" class="text-red-400 hover:text-red-600 text-sm mb-2">
+            ✖ Cancel
+        </button>
+    </div>
+
+    <h1 class="text-2xl font-bold text-center mb-4">Create Your Character</h1>
+
+    <div id="form-error" class="error" x-show="errorMessage" x-text="errorMessage"></div>
+
+    <template x-for="field in schema" :key="field.field">
+        <div class="field" x-show="shouldShow(field)" :data-condition="field.condition ?? 'always'">
+            <label>
+              <span x-text="field.label"></span>
+              <span x-show="field.mandatory=='yes'" style="color:red;"> *</span>
+            </label>
+            <template x-if="missingFields.includes(field.field)">
+              <div style='color:red; font-size: 0.9em;'>Required field</div>
+            </template>
+            <small x-show="field.description" x-text="field.description"></small>
+
+            <template x-if="field.render === 'radio'">
+                <template x-for="opt in field.options">
+                    <div><input type="radio" :name="field.field" :value="opt.key" x-model="formData[field.field]"> <span x-text="opt.label || opt.value"></span></div>
+                </template>
+            </template>
+
+            <template x-if="field.render === 'combo'">
+                <select :name="field.field" x-model="formData[field.field]">
+                    <template x-for="opt in field.options">
+                        <option :value="opt.key" x-text="opt.label || opt.value"></option>
+                    </template>
+                </select>
+            </template>
+
+            <template x-if="field.render === 'checkbox'">
+                <template x-for="opt in field.options">
+                    <div><input type="checkbox" :name="field.field" :value="opt.key" @change="updateCheckbox(field.field, opt.key)"> <span x-text="opt.label || opt.value"></span></div>
+                </template>
+            </template>
+
+            <template x-if="field.render === 'textarea'">
+                <textarea :name="field.field" rows="4" cols="50" x-model="formData[field.field]"></textarea>
+            </template>
+
+            <template x-if="!['radio','combo','checkbox','textarea'].includes(field.render)">
+                <input type="text" :name="field.field" x-model="formData[field.field]">
+            </template>
+        </div>
+    </template>
+
+    <div style="margin-top:2em;">
+        <button @click="submit()" class="w-full bg-purple-600 hover:bg-purple-700 p-2 rounded text-white">
+            Save Character
+        </button>
+    </div>
+
+    <script>
+        function characterForm() {
+            return {
+				console.log("Alpine INIT successful");
+
+                missingFields: [],
+                formSubmitted: false,
+                schema: {{ schema|tojson }},
+                formData: {},
+                errorMessage: '',
+                init() {
+                    this.schema.forEach(field => {
+                        if (field.render === 'checkbox') {
+                            this.formData[field.field] = [];
+                        } else {
+                            this.formData[field.field] = '';
+                        }
+                    });
+                },
+                shouldShow(field) {
+                    if (!field.condition || field.condition === 'always') return true;
+                    const [key, value] = field.condition.split('==').map(s => s.trim());
+                    return this.formData[key] == value;
+                },
+                updateCheckbox(field, value) {
+                    const list = this.formData[field];
+                    const index = list.indexOf(value);
+                    if (index > -1) {
+                        list.splice(index, 1);
+                    } else {
+                        list.push(value);
+                    }
+                },
+                submit() {
+                    this.errorMessage = '';
+                    this.missingFields = this.schema
+                      .filter(field => field.mandatory == 'yes')
+                      .filter(field => {
+                        const val = this.formData[field.field];
+                        return !val || (Array.isArray(val) && val.length === 0);
+                      })
+                      .map(f => f.field);
+
+                    if (this.missingFields.length > 0) {
+                        this.errorMessage = `Please fill all required fields`;
+                        return;
+                    }			
+
+                    fetch("/submit", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(this.formData)
+                    })
+                    .then(r => r.json())
+                    .then(res => {
+                        if (res.status === 'success') {
+                            alert("Character saved!");
+                        } else {
+                            this.errorMessage = res.message || 'Unknown error';
+                        }
+                    })
+                    .catch(err => {
+                        this.errorMessage = "Failed to submit: " + err;
+                    });
+                }
+            };
+        }
+    
+</script>
+</div>

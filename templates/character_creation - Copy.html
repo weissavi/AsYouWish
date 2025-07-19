@@ -1,0 +1,107 @@
+<!-- character_creation.html -->
+<div x-data="characterForm"  class="flex flex-col h-full">
+  <!-- Scrollable Form Section -->
+  <div class="space-y-6 overflow-y-auto pr-2" style="max-height: 65vh;">
+    <h2 class="text-2xl font-bold text-center">Create Your Character</h2>
+    <template x-if="schema && schema.length > 0">
+      <template x-for="field in schema" :key="field.field">
+        <div>
+		  <label :for="field.field" class="block text-white font-semibold mb-1" 
+				  x-html="field.label.replace(/\n/g, '<br>') + (field.mandatory === 'yes' ? ' <span class=\'text-red-500\'>*</span>' : '')">
+			</label>
+
+          <!-- textarea -->
+          <template x-if="field.render === 'textarea'">
+            <textarea class="w-full p-2 rounded bg-gray-800 border border-gray-500 text-white"
+                      :id="field.field" :name="field.field"
+                      x-model="formData[field.field]" rows="3"></textarea>
+					  
+					<p x-show="missingFields.includes(field.field)" class="text-red-500 text-sm mt-1">
+					  Required field
+					</p>					  
+          </template>
+
+          <!-- select -->
+          <template x-if="field.render === 'select'">
+            <select class="w-full p-2 rounded bg-gray-800 border border-gray-500 text-white"
+                    :id="field.field" :name="field.field"
+                    x-model="formData[field.field]">
+              <option value="">-- Select --</option>
+              <template x-for="option in field.options" :key="option.key">
+                <option :value="option.value" x-text="option.value"></option>
+              </template>
+            </select>
+			<p x-show="missingFields.includes(field.field)" class="text-red-500 text-sm mt-1">
+			  Required field
+			</p>					  
+			
+          </template>
+
+          <!-- radio -->
+          <template x-if="field.render === 'radio'">
+            <div class="flex flex-col gap-1">
+              <template x-for="option in field.options" :key="option.key">
+                <label class="inline-flex items-center space-x-2">
+                  <input type="radio" class="form-radio text-purple-500"
+                         :name="field.field" :value="option.value"
+                         x-model="formData[field.field]" />
+                  <span x-text="option.value"></span>
+                </label>
+              </template>
+            </div>
+			<p x-show="missingFields.includes(field.field)" class="text-red-500 text-sm mt-1">
+			  Required field
+			</p>					  
+			
+          </template>
+
+		<!-- checkbox -->
+		<template x-if="field.render === 'checkbox'">
+		  <div class="space-y-1">
+			<template x-for="option in field.options" :key="option.key || option.value">
+			  <label class="block items-center space-x-2">
+				<input type="checkbox"
+					   class="form-checkbox rounded text-purple-500"
+					   :value="option.value"
+					   :name="field.field"
+					   @change="updateCheckbox(field.field, option.value, $event.target.checked)"
+					   :checked="formData[field.field] && formData[field.field].includes(option.value)" />
+				<span x-text="option.label || option.value"></span>
+			  </label>
+			</template>
+		  </div>
+		  
+			<p x-show="missingFields.includes(field.field)" class="text-red-500 text-sm mt-1">
+			  Required field
+			</p>					  
+		  
+		</template>
+
+
+          <!-- text -->
+          <template x-if="field.render === 'text'">
+            <input type="text" class="w-full p-2 rounded bg-gray-800 border border-gray-500 text-white"
+                   :id="field.field" :name="field.field"
+                   x-model="formData[field.field]" />
+          </template>
+        </div>
+		<p x-show="missingFields.includes(field.field)" class="text-red-500 text-sm mt-1">
+		  Required field
+		</p>					  
+		
+      </template>
+    </template>
+  </div>
+
+  <!-- Buttons Section -->
+  <div class="flex justify-between mt-6 pt-4 border-t border-gray-600">
+    <button @click="closePanel"
+            class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded">
+      Cancel
+    </button>
+    <button @click="submitForm"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded">
+      Save Character
+    </button>
+  </div>
+</div>

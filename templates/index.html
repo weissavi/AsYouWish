@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>As You Wish</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="/static/tailwindcss.js"></script>
+<script defer src="/static/create_character.js"></script>
+<script defer src="/static/site.js"></script>
+<script defer src="/static/alpine.min.js"></script>
+
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+<!-- Header -->
+<header class="bg-gray-800 text-white px-6 py-4 flex items-center justify-between">
+<h1 class="text-2xl font-bold">As You Wish</h1>
+<nav class="space-x-4">
+            {% if username %}
+                <a class="hover:underline" href="#" onclick="openCharacterCreationPanel()">New Character</a>
+<a class="hover:underline" href="/load_character">Load Character</a>
+<a class="hover:underline" href="/new_fantasy">New Fantasy</a>
+<a class="hover:underline" href="/continue">Continue</a>
+<a class="hover:underline text-red-400" href="/logout">Logout</a>
+            {% else %}
+                <a class="hover:underline" href="/login">Login</a>
+<a class="hover:underline" href="/register">Register</a>
+            {% endif %}
+        </nav>
+</header>
+<body>
+<script>
+  window.__CHARACTER_SCHEMA__ = {{ schema | tojson }};
+</script>
+
+<!-- Main Content -->
+<main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+<!-- Text Section -->
+<section class="bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh]" id="story-section">
+	<h2 class="text-xl font-semibold mb-2">Your Story</h2>
+	<div class="space-y-2 text-gray-200" id="story-box">
+		<p>Welcome to the realm of desire and imagination.</p>
+	</div>
+	<div class="mt-4">
+		<input class="w-full p-2 bg-gray-700 text-white rounded border border-gray-600" placeholder="Type your fantasy..." type="text"/>
+	</div>
+</section>
+
+<section  id="character-creation-section" class="hidden bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh] w-full flex flex-col justify-between">
+	{% include 'character_creation.html' %}
+</section>
+<!-- Image Section -->
+<section class="bg-gray-800 rounded-lg p-4 shadow-lg flex items-center justify-center">
+	<img alt="Scene Image" class="rounded max-h-[70vh] object-cover" src="/static/Corwin4.jpeg"/>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-800 text-center text-sm text-gray-400 py-2">
+        © 2025 As You Wish. All rights reserved.
+    </footer>
+</body>
+</html>

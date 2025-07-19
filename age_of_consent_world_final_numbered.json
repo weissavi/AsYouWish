@@ -1,0 +1,911 @@
+{
+  "Europe": {
+    "Albania": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 14,
+      "No": 1
+    },
+    "Austria": {
+      "culture": "Western",
+      "age_of_consent": 14,
+      "No": 2
+    },
+    "Bulgaria": {
+      "culture": "Eastern",
+      "age_of_consent": 14,
+      "No": 3
+    },
+    "Estonia": {
+      "culture": "Baltic",
+      "age_of_consent": 14,
+      "No": 4
+    },
+    "Germany": {
+      "culture": "Western",
+      "age_of_consent": 14,
+      "No": 5
+    },
+    "Hungary": {
+      "culture": "Eastern",
+      "age_of_consent": 14,
+      "No": 6
+    },
+    "Italy": {
+      "culture": "Western",
+      "age_of_consent": 14,
+      "No": 7
+    },
+    "Montenegro": {
+      "culture": "Eastern",
+      "age_of_consent": 14,
+      "No": 8
+    },
+    "Portugal": {
+      "culture": "Western",
+      "age_of_consent": 14,
+      "No": 9
+    },
+    "Serbia": {
+      "culture": "Eastern",
+      "age_of_consent": 14,
+      "No": 10
+    },
+    "Croatia": {
+      "culture": "Eastern",
+      "age_of_consent": 15,
+      "No": 11
+    },
+    "Czech Republic": {
+      "culture": "Central",
+      "age_of_consent": 15,
+      "No": 12
+    },
+    "Denmark": {
+      "culture": "Nordic",
+      "age_of_consent": 15,
+      "No": 13
+    },
+    "France": {
+      "culture": "Western",
+      "age_of_consent": 15,
+      "No": 14
+    },
+    "Greece": {
+      "culture": "Western",
+      "age_of_consent": 15,
+      "No": 15
+    },
+    "Poland": {
+      "culture": "Central",
+      "age_of_consent": 15,
+      "No": 16
+    },
+    "Romania": {
+      "culture": "Eastern",
+      "age_of_consent": 15,
+      "No": 17
+    },
+    "Slovakia": {
+      "culture": "Central",
+      "age_of_consent": 15,
+      "No": 18
+    },
+    "Slovenia": {
+      "culture": "Central",
+      "age_of_consent": 15,
+      "No": 19
+    },
+    "Sweden": {
+      "culture": "Nordic",
+      "age_of_consent": 15,
+      "No": 20
+    },
+    "Belgium": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 21
+    },
+    "Finland": {
+      "culture": "Nordic",
+      "age_of_consent": 16,
+      "No": 22
+    },
+    "Latvia": {
+      "culture": "Baltic",
+      "age_of_consent": 16,
+      "No": 23
+    },
+    "Lithuania": {
+      "culture": "Baltic",
+      "age_of_consent": 16,
+      "No": 24
+    },
+    "Netherlands": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 25
+    },
+    "Norway": {
+      "culture": "Nordic",
+      "age_of_consent": 16,
+      "No": 26
+    },
+    "Spain": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 27
+    },
+    "Switzerland": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 28
+    },
+    "United Kingdom": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 29
+    },
+    "Cyprus": {
+      "culture": "Mixed",
+      "age_of_consent": 17,
+      "No": 30
+    },
+    "Ireland": {
+      "culture": "Western",
+      "age_of_consent": 17,
+      "No": 31
+    },
+    "Malta": {
+      "culture": "Western",
+      "age_of_consent": 18,
+      "No": 32
+    },
+    "Turkey": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 18,
+      "No": 33
+    },
+    "Vatican City": {
+      "culture": "Religious-Christian",
+      "age_of_consent": 18,
+      "No": 34
+    }
+  },
+  "Asia": {
+    "Philippines": {
+      "culture": "Catholic",
+      "age_of_consent": 12,
+      "No": 1
+    },
+    "China": {
+      "culture": "Eastern",
+      "age_of_consent": 14,
+      "No": 2
+    },
+    "North Korea": {
+      "culture": "Closed",
+      "age_of_consent": 15,
+      "No": 3
+    },
+    "Thailand": {
+      "culture": "Buddhist",
+      "age_of_consent": 15,
+      "No": 4
+    },
+    "Armenia": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 5
+    },
+    "Azerbaijan": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 16,
+      "No": 6
+    },
+    "Georgia": {
+      "culture": "Orthodox",
+      "age_of_consent": 16,
+      "No": 7
+    },
+    "Indonesia": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 16,
+      "No": 8
+    },
+    "Israel": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 9
+    },
+    "Japan": {
+      "culture": "Modern",
+      "age_of_consent": 16,
+      "No": 10
+    },
+    "Kazakhstan": {
+      "culture": "Mixed",
+      "age_of_consent": 16,
+      "No": 11
+    },
+    "Kyrgyzstan": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 16,
+      "No": 12
+    },
+    "Malaysia": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 16,
+      "No": 13
+    },
+    "Myanmar": {
+      "culture": "Buddhist",
+      "age_of_consent": 16,
+      "No": 14
+    },
+    "Nepal": {
+      "culture": "Hindu",
+      "age_of_consent": 16,
+      "No": 15
+    },
+    "Singapore": {
+      "culture": "Modern",
+      "age_of_consent": 16,
+      "No": 16
+    },
+    "South Korea": {
+      "culture": "Modern",
+      "age_of_consent": 16,
+      "No": 17
+    },
+    "Sri Lanka": {
+      "culture": "Buddhist",
+      "age_of_consent": 16,
+      "No": 18
+    },
+    "Uzbekistan": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 16,
+      "No": 19
+    },
+    "Vietnam": {
+      "culture": "Communist",
+      "age_of_consent": 16,
+      "No": 20
+    },
+    "Bangladesh": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 18,
+      "No": 21
+    },
+    "India": {
+      "culture": "Conservative",
+      "age_of_consent": 18,
+      "No": 22
+    },
+    "Lebanon": {
+      "culture": "Modern",
+      "age_of_consent": 18,
+      "No": 23
+    },
+    "Turkey": {
+      "culture": "Muslim-majority",
+      "age_of_consent": 18,
+      "No": 24
+    },
+    "Afghanistan": {
+      "culture": "Muslim (Sunni/Taliban)",
+      "age_of_consent": "Must be married",
+      "No": 25
+    },
+    "Iran": {
+      "culture": "Muslim (Shia)",
+      "age_of_consent": "Must be married",
+      "No": 26
+    },
+    "Iraq": {
+      "culture": "Muslim (Mixed)",
+      "age_of_consent": "Must be married",
+      "No": 27
+    },
+    "Jordan": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 28
+    },
+    "Pakistan": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 29
+    },
+    "Saudi Arabia": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 30
+    },
+    "Syria": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 31
+    },
+    "Tajikistan": {
+      "culture": "Muslim-majority",
+      "age_of_consent": "Must be married",
+      "No": 32
+    },
+    "United Arab Emirates": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 33
+    },
+    "Yemen": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 34
+    }
+  },
+  "South America": {
+    "Bolivia": {
+      "culture": "Indigenous Catholic",
+      "age_of_consent": 14,
+      "No": 1
+    },
+    "Brazil": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 14,
+      "No": 2
+    },
+    "Colombia": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 14,
+      "No": 3
+    },
+    "Ecuador": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 14,
+      "No": 4
+    },
+    "Paraguay": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 14,
+      "No": 5
+    },
+    "Peru": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 14,
+      "No": 6
+    },
+    "French Guiana": {
+      "culture": "French (Overseas)",
+      "age_of_consent": 15,
+      "No": 7
+    },
+    "Uruguay": {
+      "culture": "Secular Latin",
+      "age_of_consent": 15,
+      "No": 8
+    },
+    "Argentina": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 16,
+      "No": 9
+    },
+    "Guyana": {
+      "culture": "Mixed (Christian/Hindu/Muslim)",
+      "age_of_consent": 16,
+      "No": 10
+    },
+    "Suriname": {
+      "culture": "Mixed (Dutch/Indian/Muslim)",
+      "age_of_consent": 16,
+      "No": 11
+    },
+    "Venezuela": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 16,
+      "No": 12
+    },
+    "Chile": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 18,
+      "No": 13
+    }
+  },
+  "Africa": {
+    "Nigeria": {
+      "culture": "Muslim/Christian",
+      "age_of_consent": 11,
+      "No": 1
+    },
+    "Angola": {
+      "culture": "Catholic",
+      "age_of_consent": 12,
+      "No": 2
+    },
+    "Niger": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": 13,
+      "No": 3
+    },
+    "Algeria": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": 16,
+      "No": 4
+    },
+    "Cameroon": {
+      "culture": "Christian/Muslim",
+      "age_of_consent": 16,
+      "No": 5
+    },
+    "Ghana": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 6
+    },
+    "Mozambique": {
+      "culture": "Catholic",
+      "age_of_consent": 16,
+      "No": 7
+    },
+    "Namibia": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 8
+    },
+    "Senegal": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": 16,
+      "No": 9
+    },
+    "South Africa": {
+      "culture": "Modern African",
+      "age_of_consent": 16,
+      "No": 10
+    },
+    "Tunisia": {
+      "culture": "Muslim (Secular)",
+      "age_of_consent": 16,
+      "No": 11
+    },
+    "Zimbabwe": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 12
+    },
+    "Ethiopia": {
+      "culture": "Orthodox Christian",
+      "age_of_consent": 18,
+      "No": 13
+    },
+    "Kenya": {
+      "culture": "Christian",
+      "age_of_consent": 18,
+      "No": 14
+    },
+    "Morocco": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": 18,
+      "No": 15
+    },
+    "Rwanda": {
+      "culture": "Christian",
+      "age_of_consent": 18,
+      "No": 16
+    },
+    "Tanzania": {
+      "culture": "Christian/Muslim",
+      "age_of_consent": 18,
+      "No": 17
+    },
+    "Uganda": {
+      "culture": "Christian",
+      "age_of_consent": 18,
+      "No": 18
+    },
+    "Chad": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 19
+    },
+    "Egypt": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 20
+    },
+    "Libya": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 21
+    },
+    "Mali": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 22
+    },
+    "Somalia": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 23
+    },
+    "Sudan": {
+      "culture": "Muslim (Sunni)",
+      "age_of_consent": "Must be married",
+      "No": 24
+    }
+  },
+  "Oceania": {
+    "Solomon Islands": {
+      "culture": "Christian",
+      "age_of_consent": 15,
+      "No": 1
+    },
+    "Australia": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 2
+    },
+    "Fiji": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 3
+    },
+    "New Zealand": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 4
+    },
+    "Papua New Guinea": {
+      "culture": "Traditional",
+      "age_of_consent": 16,
+      "No": 5
+    },
+    "Samoa": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 6
+    },
+    "Tonga": {
+      "culture": "Christian",
+      "age_of_consent": 16,
+      "No": 7
+    }
+  },
+  "North America": {
+    "USA": {
+      "Alabama": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 1
+      },
+      "Alaska": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 2
+      },
+      "Arkansas": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 3
+      },
+      "Connecticut": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 4
+      },
+      "Georgia": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 5
+      },
+      "Hawaii": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 6
+      },
+      "Indiana": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 7
+      },
+      "Iowa": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 8
+      },
+      "Kansas": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 9
+      },
+      "Kentucky": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 10
+      },
+      "Maine": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 11
+      },
+      "Maryland": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 12
+      },
+      "Massachusetts": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 13
+      },
+      "Michigan": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 14
+      },
+      "Minnesota": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 15
+      },
+      "Mississippi": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 16
+      },
+      "Montana": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 17
+      },
+      "Nevada": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 18
+      },
+      "New Hampshire": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 19
+      },
+      "New Jersey": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 20
+      },
+      "North Carolina": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 21
+      },
+      "Ohio": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 22
+      },
+      "Oklahoma": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 23
+      },
+      "Pennsylvania": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 24
+      },
+      "Rhode Island": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 25
+      },
+      "South Carolina": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 26
+      },
+      "South Dakota": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 27
+      },
+      "Vermont": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 28
+      },
+      "Washington": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 29
+      },
+      "West Virginia": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 30
+      },
+      "Wyoming": {
+        "culture": "Western",
+        "age_of_consent": 16,
+        "No": 31
+      },
+      "Colorado": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 32
+      },
+      "Illinois": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 33
+      },
+      "Louisiana": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 34
+      },
+      "Missouri": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 35
+      },
+      "Nebraska": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 36
+      },
+      "New Mexico": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 37
+      },
+      "New York": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 38
+      },
+      "Texas": {
+        "culture": "Western",
+        "age_of_consent": 17,
+        "No": 39
+      },
+      "Arizona": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 40
+      },
+      "California": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 41
+      },
+      "Delaware": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 42
+      },
+      "Florida": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 43
+      },
+      "Idaho": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 44
+      },
+      "North Dakota": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 45
+      },
+      "Oregon": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 46
+      },
+      "Tennessee": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 47
+      },
+      "Utah": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 48
+      },
+      "Virginia": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 49
+      },
+      "Wisconsin": {
+        "culture": "Western",
+        "age_of_consent": 18,
+        "No": 50
+      }
+    },
+    "Mexico": {
+      "culture": "Latin Catholic",
+      "age_of_consent": 12,
+      "No": 1
+    },
+    "Greenland": {
+      "culture": "Nordic/Indigenous",
+      "age_of_consent": 15,
+      "No": 2
+    },
+    "Saint Vincent and the Grenadines": {
+      "culture": "Caribbean",
+      "age_of_consent": 15,
+      "No": 3
+    },
+    "Antigua and Barbuda": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 4
+    },
+    "Bahamas": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 5
+    },
+    "Barbados": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 6
+    },
+    "Bermuda": {
+      "culture": "British Overseas",
+      "age_of_consent": 16,
+      "No": 7
+    },
+    "Canada": {
+      "culture": "Western",
+      "age_of_consent": 16,
+      "No": 8
+    },
+    "Cuba": {
+      "culture": "Communist Caribbean",
+      "age_of_consent": 16,
+      "No": 9
+    },
+    "Dominica": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 10
+    },
+    "Jamaica": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 11
+    },
+    "Saint Kitts and Nevis": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 12
+    },
+    "Saint Lucia": {
+      "culture": "Caribbean",
+      "age_of_consent": 16,
+      "No": 13
+    },
+    "Dominican Republic": {
+      "culture": "Caribbean",
+      "age_of_consent": 18,
+      "No": 14
+    },
+    "Haiti": {
+      "culture": "Caribbean",
+      "age_of_consent": 18,
+      "No": 15
+    },
+    "Trinidad and Tobago": {
+      "culture": "Caribbean",
+      "age_of_consent": 18,
+      "No": 16
+    },
+    "United States": {
+      "culture": "Western",
+      "age_of_consent": "see nested structure",
+      "No": 17
+    }
+  }
+}
