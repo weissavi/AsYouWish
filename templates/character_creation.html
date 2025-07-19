@@ -1,5 +1,5 @@
 <!-- character_creation.html -->
-<div id="characterFormRoot" x-data="characterForm"  class="flex flex-col h-full">
+<div id="characterFormRoot" x-data="characterForm" class="flex flex-col h-full">
   <!-- Scrollable Form Section -->
   <div class="space-y-6 overflow-y-auto pr-2" style="max-height: 65vh;">
     <h2 class="text-2xl font-bold text-center">Create Your Character</h2>
@@ -53,7 +53,7 @@
 			  <label class="block items-center space-x-2">
 				<input type="checkbox"
 				   class="form-checkbox rounded text-purple-500"
-				   :value="option.value"
+				   :value="option.key"
 				   :name="field.field"
 				   x-model="formData[field.field]" />
 

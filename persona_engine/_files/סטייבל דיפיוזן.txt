@@ -1,0 +1,13 @@
+output = replicate.run(
+    "stability-ai/stable-diffusion-img2img:15a3689ee13b0d2616e98820eca31d4c3abcd36672df6afce5cb6feb1d66087d",
+    input={
+        "image": "https://replicate.delivery/pbxt/HtKMvJSvuGWDn2B35mM396QGzcrgCNkcgSko8JxtXux4aX9H/sketch-mountains-input.jpeg",
+        "prompt": "A fantasy landscape, trending on artstation",
+        "scheduler": "DPMSolverMultistep",
+        "num_outputs": 1,
+        "guidance_scale": 7.5,
+        "prompt_strength": 0.8,
+        "num_inference_steps": 25
+    }
+)
+print(output)
