@@ -12,6 +12,99 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DATA_DIR = os.path.join(BASE_DIR, "user_data")
 SCHEMA_PATH = os.path.join(BASE_DIR, "character_creation_schema.json")
 
+def get_current_user():
+    if "username" in session:
+        return session["username"]
+    
+    if app.debug:
+        session["username"] = "avi"
+        return "avi"
+
+    return None
+
+def ר():
+    username = get_current_user()
+    if not username:
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return None  # תמשיך, ה-API יתמודד
+        else:
+            return redirect(url_for("index"))
+    return username
+
+
+def build_fantasy_prompt(character_name, template_path="fantasy_prompt_template.txt"):
+    username = session["username"]
+    user_path = os.path.join(USER_DATA_DIR, username)
+
+    user_file = os.path.join(user_path, f"{character_name}_user_profile.json")
+    ai_file = os.path.join(user_path, f"{character_name}_ai_persona.json")
+
+    with open(user_file, encoding="utf-8") as f:
+        user_data = json.load(f)
+    with open(ai_file, encoding="utf-8") as f:
+        ai_data = json.load(f)
+    with open(template_path, encoding="utf-8") as f:
+        template = f.read()
+    with open(SCHEMA_PATH, encoding="utf-8") as f:
+        schema = json.load(f)
+
+    # תרגום content_types
+    content_type_field = next((f for f in schema if f["field"] == "content_types"), None)
+    label_lookup = {}
+    if content_type_field and "options" in content_type_field:
+        label_lookup = {
+            opt.get("key"): opt.get("ai_prompt") or opt.get("label") or opt.get("key")
+            for opt in content_type_field["options"]
+        }
+
+    # מיזוג נתונים
+    merged = {**user_data, **ai_data}
+
+    if isinstance(merged.get("content_types"), list):
+        labels = [label_lookup.get(k, k) for k in merged["content_types"]]
+        merged["content_types"] = ", ".join(labels)
+
+    for key in ["other_gender", "voice_preference", "vibe"]:
+        merged.setdefault(key, "")
+
+    return template.format(**merged)
+
+
+def build_fantasy_prompt_old(character_name, template_path="fantasy_prompt_template.txt"):
+    """
+    user_path: נתיב לתיקיית המשתמש (user_data/username)
+    character_name: שם הדמות שנבחר (ללא סיומות)
+    """
+    username = session["username"]
+
+    user_path = os.path.join(USER_DATA_DIR, username)
+
+    user_file = f"{user_path}/{character_name}_user_profile.json"
+    ai_file = f"{user_path}/{character_name}_ai_persona.json"
+
+    with open(user_file, encoding="utf-8") as f:
+        user_data = json.load(f)
+
+    with open(ai_file, encoding="utf-8") as f:
+        ai_data = json.load(f)
+
+    with open(template_path, encoding="utf-8") as f:
+        template = f.read()
+
+    # איחוד הערכים לתוך מילון אחד
+    merged = {**user_data, **ai_data}
+
+    # התמודדות עם content_types (מערך)
+    if isinstance(merged.get("content_types"), list):
+        merged["content_types"] = ", ".join(merged["content_types"])
+
+    # הבטחת קיום כל הערכים גם אם חסרים
+    for key in ["other_gender", "voice_preference", "vibe"]:
+        merged.setdefault(key, "")
+
+    return template.format(**merged)
+    
+    
 def hash_password(password, salt=None):
     if not salt:
         salt = secrets.token_hex(8)
@@ -44,6 +137,16 @@ def index():
     #return render_template("index.html", history=history)
     
 
+@app.route("/prompt/<character_name>", methods=["GET"])
+def debug_prompt(character_name):
+    if "username" not in session:
+        return "❌ User not logged in", 403
+
+    try:
+        prompt = build_fantasy_prompt(character_name)
+        return f"<pre>{prompt}</pre>"
+    except Exception as e:
+        return f"❌ Error: {str(e)}", 500
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -151,10 +254,11 @@ def schema():
 
 @app.route("/save_character", methods=["POST"])
 def save_character():
-    if "username" not in session:
-        return jsonify({"status": "error", "message": "User not logged in"}), 403
+    #if "username" not in session:
+    #    return jsonify({"status": "error", "message": "User not logged in"}), 403
 
     username = session["username"]
+    username = "avi"
     data = request.get_json()
 
     with open(SCHEMA_PATH, encoding='utf-8') as f:
@@ -169,14 +273,17 @@ def save_character():
         if key in data:
             (ai_data if target == "ai_profile" else user_data)[key] = data[key]
 
-    user_dir = os.path.join(USER_BASE_DIR, username)
+    user_dir = os.path.join(USER_DATA_DIR, username)
     os.makedirs(user_dir, exist_ok=True)
-
-    with open(os.path.join(user_dir, "user_profile.json"), "w", encoding="utf-8") as f:
+    character_name = user_data["name"]
+    with open(os.path.join(user_dir, character_name + "_user_profile.json"), "w", encoding="utf-8") as f:
         json.dump(user_data, f, indent=2, ensure_ascii=False)
 
-    with open(os.path.join(user_dir, "ai_persona.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(user_dir, character_name + "_ai_persona.json"), "w", encoding="utf-8") as f:
         json.dump(ai_data, f, indent=2, ensure_ascii=False)
+
+    system_prompt = build_fantasy_prompt(character_name)
+    print(system_prompt)
 
     return jsonify({"success": True})
 
@@ -189,3 +296,5 @@ def logout():
     
 if __name__ == "__main__":
     app.run(debug=True)
+    
+

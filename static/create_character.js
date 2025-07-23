@@ -65,12 +65,19 @@ window.characterForm = function () {
 
       this.savingInProgress = false;
 
-      if (response.ok) {
-        alert("Character saved!");
-        this.closePanel();
-      } else {
-        this.errorMessage = "Failed to save.";
-      }
+	  if (response.ok) {
+		  alert("Character saved!");
+		  this.closePanel();
+	  } else {
+		  if (response.status === 403) {
+			alert("Your session has expired. Redirecting to login...");
+			window.location.href = "/login";  // או "/" אם אתה רוצה לדף הבית
+			return;
+		  }
+		  else {
+			  alert("save error " + response.error);
+		  }
+	  }
     },
 	
 	isEmpty(val) {

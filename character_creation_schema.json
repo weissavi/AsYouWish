@@ -1,6 +1,6 @@
 [
   {
-    "label": "Welcome, traveler. This world is shaped by your choices, dreams, and boundaries.\nWhat's your character's name, How should I call you? (name, nickname, pronouns)?",
+    "label": "Welcome, traveler. This world is shaped by your choices, dreams, and boundaries.\n\nWhat's your character's name, How should I call you? (name, nickname, pronouns)?",
     "condition": "always",
     "mandatory": "yes",
     "field": "name",
@@ -22,10 +22,22 @@
     "field": "gender",
     "target": "user_profile",
     "options": [
-      { "key": 1, "value": "Male" },
-      { "key": 2, "value": "Female" },
-      { "key": 3, "value": "Non Binary" },
-      { "key": 4, "value": "Something else" }
+      {
+        "key": 1,
+        "value": "Male"
+      },
+      {
+        "key": 2,
+        "value": "Female"
+      },
+      {
+        "key": 3,
+        "value": "Non Binary"
+      },
+      {
+        "key": 4,
+        "value": "Something else"
+      }
     ],
     "render": "radio"
   },
@@ -44,13 +56,34 @@
     "field": "orientation",
     "target": "user_profile",
     "options": [
-      { "key": 1, "value": "Male" },
-      { "key": 2, "value": "Female" },
-      { "key": 3, "value": "Both" },
-      { "key": 4, "value": "Trans women (MTF)" },
-      { "key": 5, "value": "Trans men (FTM)" },
-      { "key": 6, "value": "Sapiosexual" },
-      { "key": 7, "value": "All" }
+      {
+        "key": 1,
+        "value": "Male"
+      },
+      {
+        "key": 2,
+        "value": "Female"
+      },
+      {
+        "key": 3,
+        "value": "Both"
+      },
+      {
+        "key": 4,
+        "value": "Trans women (MTF)"
+      },
+      {
+        "key": 5,
+        "value": "Trans men (FTM)"
+      },
+      {
+        "key": 6,
+        "value": "Sapiosexual"
+      },
+      {
+        "key": 7,
+        "value": "All"
+      }
     ],
     "render": "radio"
   },
@@ -95,14 +128,6 @@
     "render": "textarea"
   },
   {
-    "label": "What are your limits or things you want to avoid?",
-    "condition": "always",
-    "mandatory": "yes",
-    "field": "limits",
-    "target": "user_profile",
-    "render": "textarea"
-  },
-  {
     "label": "Which voice would you like to hear the narration in — male or female?",
     "description": "This affects the AI narrator’s voice, not your character’s.",
     "condition": "always",
@@ -110,86 +135,121 @@
     "field": "voice_preference",
     "target": "ai_profile",
     "options": [
-      { "key": 1, "value": "Male" },
-      { "key": 2, "value": "Female" }
+      {
+        "key": 1,
+        "value": "Male"
+      },
+      {
+        "key": 2,
+        "value": "Female"
+      }
     ],
     "render": "radio"
   },
   {
     "label": "🌟 Choose Your Starting Vibe",
     "description": "This sets the *tone and energy* of how the story begins. It tells the AI what kind of experience you’re in the mood for — soft, playful, wild, or surprising.",
-	"mandatory": "yes",
+    "mandatory": "yes",
     "field": "vibe",
     "target": "ai_profile",
     "options": [
-      { "key": 1, "value": "🌱 Soft story — imagination, emotion, discovery" },
-      { "key": 2, "value": "🎓 Educational journey — sexuality, identity, relationships" },
-      { "key": 3, "value": "🔥 Fantasy playground — wild, kinky, or unbound" },
-      { "key": 4, "value": "🎲 Not sure — surprise me gently" }
+      {
+        "key": 1,
+        "value": "🌱 Soft story — imagination, emotion, discovery"
+      },
+      {
+        "key": 2,
+        "value": "🎓 Educational journey — sexuality, identity, relationships"
+      },
+      {
+        "key": 3,
+        "value": "🔥 Fantasy playground — wild, kinky, or unbound"
+      },
+      {
+        "key": 4,
+        "value": "🎲 Not sure — surprise me gently"
+      }
     ],
     "render": "radio"
   },
   {
-    "label": "🛡️ Set Your Comfort Level",
+    "label": "What are your limits or things you want to avoid?",
+    "condition": "always",
+    "mandatory": "yes",
+    "field": "limits",
+    "target": "user_profile",
+    "render": "textarea"
+  },
+    {
+    "label": "Limits Sensitivity",
     "description": "This tells us *how far you're comfortable going*. It's about your personal boundaries — not the vibe of the AI. You’re always in control.",
 	"mandatory": "yes",
     "field": "content_settings",
     "target": "user_profile",
     "options": [
-      { "key": 1, "value": "✅ Yes — I want to choose my boundaries" },
-      { "key": 2, "value": "🛡️ Yes, but please start gentle only" },
-      { "key": 3, "value": "⏩ No — surprise me, but stay soft at first" }
+      { "key": 1, "value": "Always Respect My Limits — No improvisation" },
+      { "key": 2, "value": "Respect My Limits, But Feel the Mood" },
+      { "key": 3, "value": "I’m Open — Just be soft and intuitive at first" }
     ],
     "render": "radio"
   },
   {
     "label": "✨ Choose the types of content you're comfortable exploring",
     "description": "You can select as many as you'd like. These help us shape the story to match your comfort zone.",
-	"mandatory": "yes",
+    "mandatory": "yes",
     "field": "content_types",
     "target": "user_profile",
+    "render": "checkbox",
+
     "options": [
       {
         "key": "romance",
         "label": "❤️ Romance",
-        "description": "Emotional connection, love stories, affectionate intimacy"
+        "description": "Emotional connection, love stories, affectionate intimacy",
+        "ai_prompt": "romantic connection, tender love, emotional intimacy"
       },
       {
         "key": "friendship",
         "label": "👫 Friendship",
-        "description": "Close relationships, bonding moments, platonic love"
+        "description": "Close relationships, bonding moments, platonic love",
+        "ai_prompt": "deep friendship, platonic bonds, trust building"
       },
       {
         "key": "emotional_growth",
         "label": "🌿 Emotional Growth",
-        "description": "Personal transformation, vulnerability, inner strength"
+        "description": "Personal transformation, vulnerability, inner strength",
+        "ai_prompt": "emotional development, self-discovery, inner transformation"
       },
       {
         "key": "light_touch",
         "label": "🕊️ Light Touch",
-        "description": "Mild sensuality, tender contact, subtle eroticism"
+        "description": "Mild sensuality, tender contact, subtle eroticism",
+        "ai_prompt": "gentle sensuality, soft touches, teasing warmth"
       },
       {
         "key": "fantasy_roleplay",
         "label": "🧙 Fantasy Roleplay",
-        "description": "Imaginary worlds, character dynamics, magical scenarios"
+        "description": "Imaginary worlds, character dynamics, magical scenarios",
+        "ai_prompt": "fantasy settings, imaginative roleplay, mythical scenes"
       },
       {
         "key": "power_play",
         "label": "🕹️ Power Play",
-        "description": "Control and surrender, domination and submission (consensual only)"
+        "description": "Control and surrender, domination and submission (consensual only)",
+        "ai_prompt": "dominance and submission, consensual control dynamics"
       },
       {
         "key": "fetish_themes",
         "label": "🎭 Fetish Themes",
-        "description": "Kinks, taboo exploration, alternative desires"
+        "description": "Kinks, taboo exploration, alternative desires",
+        "ai_prompt": "exploration of kinks, taboo fantasies, fetish content"
       },
       {
         "key": "body_exploration",
         "label": "🧍 Body Exploration",
-        "description": "Sensual focus on touch, anatomy, and physical sensation"
+        "description": "Sensual focus on touch, anatomy, and physical sensation",
+        "ai_prompt": "detailed body focus, physical sensations, sensual discovery"
       }
-    ],
-    "render": "checkbox"
+    ]
   }
 ]
