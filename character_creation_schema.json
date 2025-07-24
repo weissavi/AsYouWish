@@ -251,5 +251,18 @@
         "ai_prompt": "detailed body focus, physical sensations, sensual discovery"
       }
     ]
+  },
+  {
+    "label": "Finnaly, which game mode you prefer?",
+    "description": "This tells us which type of game you like more",
+	"mandatory": "yes",
+    "field": "mode",
+    "target": "user_profile",
+    "options": [
+      { "key": "dynamic", "value": "Always use text response only." },
+      { "key": "storyline", "value": "Choose between options." },
+      { "key": "hybrid", "value": "Both options and text response allowed." }
+    ],
+    "render": "radio"
   }
 ]

@@ -31,11 +31,77 @@ def get_user_or_redirect():
             return redirect(url_for("index"))
     return username
 
-def build_fantasy_prompt(character_name, template_path="fantasy_prompt_template.txt"):
+def build_fantasy_prompt(character_name, summary=None):
     username = get_current_user()
     user_path = os.path.join(USER_DATA_DIR, username)
-    character_file = os.path.join(user_path, f"{character_name}.json")
+    template_path = "fantasy_prompt_unified.txt"
+    char_file = os.path.join(USER_DATA_DIR, username, "characters", character_name, f"{character_name}.json")
 
+    # טען את קובץ הדמות המאוחד
+    with open(char_file, encoding="utf-8") as f:
+        full_data = json.load(f)
+
+    user_data = full_data.get("user_profile", {})
+    ai_data = full_data.get("ai_profile", {})
+    
+    mode_to_style = {
+        "dynamic": "free-text",
+        "storyline": "choices-only",
+        "hybrid": "choices + free-text"
+    }
+    
+
+    # טען את תבנית הפרומפט
+    with open(template_path, encoding="utf-8") as f:
+        template = f.read()
+
+    # טען סכימה למציאת תרגום של content_types
+    with open(SCHEMA_PATH, encoding="utf-8") as f:
+        schema = json.load(f)
+
+    # מיפוי מפתחות לתוויות
+    content_type_field = next((f for f in schema if f["field"] == "content_types"), None)
+    label_lookup = {}
+    if content_type_field and "options" in content_type_field:
+        label_lookup = {
+            opt.get("key"): opt.get("ai_prompt") or opt.get("label") or opt.get("key")
+            for opt in content_type_field["options"]
+        }
+
+    # מיזוג כל הנתונים הנדרשים
+    merged = {**user_data, **ai_data}
+
+    # עיבוד content_types
+    if isinstance(merged.get("content_types"), list):
+        labels = [label_lookup.get(k, k) for k in merged["content_types"]]
+        merged["content_types"] = ", ".join(labels)
+
+    # ברירת מחדל לשדות חסרים
+    for key in ["other_gender", "vibe", "mode"]:
+        merged.setdefault(key, "")
+
+    merged["other_gender_section"] = f"- Other Gender Description: {merged['other_gender']}\n" if merged["other_gender"] else ""
+
+    merged["input_style"] = mode_to_style.get(merged["mode"], "")    
+    
+    is_first_scene = summary is None
+ 
+    if is_first_scene:
+        merged["intro_or_summary"] = "Begin by writing the first immersive scene in second person."
+    else:
+        merged["intro_or_summary"] = f"Summary so far: {summary or 'No summary available.'}\nContinue the immersive story from where it left off."
+
+
+    # צור את הפרומפט הסופי
+    return template.format(**merged)
+
+
+def build_fantasy_prompt_bak(character_name, ):
+    username = get_current_user()
+    user_path = os.path.join(USER_DATA_DIR, username)
+    character_file = os.path.join(user_path, "characters",character_name, f"{character_name}.json")
+    template_path="fantasy_prompt_template.txt"
+    
     # טען את קובץ הדמות המאוחד
     with open(character_file, encoding="utf-8") as f:
         full_data = json.load(f)
@@ -204,7 +270,15 @@ def save_character():
         key = field["field"]
         target = field.get("target", "user_profile")
         if key in data:
-            (ai_data if target == "ai_profile" else user_data)[key] = data[key]
+            value = data[key]
+
+            # יוצא מן הכלל: עבור השדה "mode" שמור את ה-key ולא את ה-value
+            if key == "mode" and "options" in field:
+                reverse_lookup = {opt["value"]: opt["key"] for opt in field["options"]}
+                value = reverse_lookup.get(value, value)
+
+            (ai_data if target == "ai_profile" else user_data)[key] = value        
+
 
     user_dir = os.path.join(USER_DATA_DIR, username)
     os.makedirs(user_dir, exist_ok=True)
