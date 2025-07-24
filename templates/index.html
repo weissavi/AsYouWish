@@ -12,19 +12,23 @@
 
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
+<div id="toast"
+     class="fixed bottom-8 right-1/2 translate-x-1/2 bg-blue-800 text-white px-6 py-3 rounded-lg shadow-xl 
+            transition-opacity duration-500 opacity-0 hidden z-50 text-right text-base font-medium">
+</div>
+
 <!-- Header -->
 <header class="bg-gray-800 text-white px-6 py-4 flex items-center justify-between">
 <h1 class="text-2xl font-bold">As You Wish</h1>
 <nav class="space-x-4">
             {% if username %}
-                <a class="hover:underline" href="#" onclick="openCharacterCreationPanel()">New Character</a>
-<a class="hover:underline" href="/load_character">Load Character</a>
-<a class="hover:underline" href="/new_fantasy">New Fantasy</a>
-<a class="hover:underline" href="/continue">Continue</a>
-<a class="hover:underline text-red-400" href="/logout">Logout</a>
+                <a class="hover:underline" href="#" 
+				   onclick="showPanels('character-creation-section')">New Character</a>
+				<a class="hover:underline" href="#" onclick="showCharacterList()">View Characters</a>
+				<a class="hover:underline text-red-400" href="/logout">Logout</a>
             {% else %}
                 <a class="hover:underline" href="/login">Login</a>
-<a class="hover:underline" href="/register">Register</a>
+				<a class="hover:underline" href="/register">Register</a>
             {% endif %}
         </nav>
 </header>
@@ -36,7 +40,7 @@
 <!-- Main Content -->
 <main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
 <!-- Text Section -->
-<section class="bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh]" id="story-section">
+<section data-panel class="bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh]" id="story-section">
 	<h2 class="text-xl font-semibold mb-2">Your Story</h2>
 	<div class="space-y-2 text-gray-200" id="story-box">
 		<p>Welcome to the realm of desire and imagination.</p>
@@ -45,12 +49,22 @@
 		<input class="w-full p-2 bg-gray-700 text-white rounded border border-gray-600" placeholder="Type your fantasy..." type="text"/>
 	</div>
 </section>
-
-<section  id="character-creation-section" class="hidden bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh] w-full flex flex-col justify-between">
+<section data-panel id="character-list-section" class="hidden bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh] overflow-auto">
+    {% include 'character_list.html' %}
+</section>
+<section data-panel id="character-creation-section" class="hidden bg-gray-800 rounded-lg p-4 shadow-lg h-[75vh] w-full flex flex-col justify-between">
 	{% include 'character_creation.html' %}
 </section>
+<!--============================================================================= -->
+<!--============================================================================= -->
+<!--============================================================================= -->
+<!--Right panels -->
+<!--============================================================================= -->
+<!--============================================================================= -->
+<!--============================================================================= -->
 <!-- Image Section -->
-<section class="bg-gray-800 rounded-lg p-4 shadow-lg flex items-center justify-center">
+
+<section data-panel id="scene-section" class="bg-gray-800 rounded-lg p-4 shadow-lg flex items-center justify-center" >
 	<img alt="Scene Image" class="rounded max-h-[70vh] object-cover" src="/static/Corwin4.jpeg"/>
 </section>
 </main>

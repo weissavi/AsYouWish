@@ -66,16 +66,16 @@ window.characterForm = function () {
       this.savingInProgress = false;
 
 	  if (response.ok) {
-		  alert("Character saved!");
-		  this.closePanel();
+		  showToast("Character saved");
+		  showCharacterList();
 	  } else {
 		  if (response.status === 403) {
-			alert("Your session has expired. Redirecting to login...");
+			showToast("Your session has expired. Redirecting to login...");
 			window.location.href = "/login";  // או "/" אם אתה רוצה לדף הבית
 			return;
 		  }
 		  else {
-			  alert("save error " + response.error);
+			  showToast("save error " + response.error);
 		  }
 	  }
     },
@@ -122,7 +122,7 @@ window.characterForm = function () {
 
     closePanel() {
       this.resetForm();
-      closeCharacterCreationPanel();
+      showPanels('story-section')
     },
 	
 	getRandomText(label) {

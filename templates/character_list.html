@@ -1,0 +1,26 @@
+<!-- character_list.html -->
+<div x-data="characterListForm()" x-init="init()" class="p-4">
+  <h2 class="text-2xl font-bold mb-4">Character List</h2>
+  <template x-if="loading"><p>Loading...</p></template>
+  <template x-if="characters.length === 0 && !loading"><p>No characters found.</p></template>
+  <ul class="space-y-2" x-show="characters.length > 0">
+	<template x-for="char in characters" :key="char">
+	  <li class="p-2 bg-gray-700 rounded flex justify-between items-center space-x-2 hover:bg-purple-600">
+		<span class="flex-1 cursor-pointer" @click="loadPrompt(char)" x-text="char"></span>
+		<div class="flex space-x-2">
+		  <button class="text-green-400 hover:text-green-200" @click="viewCharacter(char)">👁</button>
+		  <button class="text-blue-400 hover:text-blue-200" @click="loadCharacter(char)">📂</button>
+		  <button class="text-red-400 hover:text-red-200" @click="deleteCharacter(char)">🗑</button>
+		</div>
+	  </li>
+	</template>
+  </ul>
+  <!-- Buttons Section -->
+  <div class="flex justify-between mt-6 pt-4 border-t border-gray-600">
+    <button @click="closePanel"
+            class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded">
+      Close
+    </button>
+  </div>
+  <div class="mt-4" x-show="prompt">
+  
