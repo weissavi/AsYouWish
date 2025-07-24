@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import uuid
 import os, json, hashlib, secrets
+import shutil
 from pathlib import Path
 from persona_engine.core import generate_fantasy
 from persona_engine.context import load_history, save_history
@@ -74,43 +75,6 @@ def build_fantasy_prompt(character_name, template_path="fantasy_prompt_template.
     # צור את הפרומפט הסופי
     return template.format(**merged)
 
-
-def build_fantasy_prompt_old(character_name, template_path="fantasy_prompt_template.txt"):
-    username = get_current_user()
-    user_path = os.path.join(USER_DATA_DIR, username)
-
-    user_file = os.path.join(user_path, f"{character_name}_user_profile.json")
-    ai_file = os.path.join(user_path, f"{character_name}_ai_persona.json")
-
-    with open(user_file, encoding="utf-8") as f:
-        user_data = json.load(f)
-    with open(ai_file, encoding="utf-8") as f:
-        ai_data = json.load(f)
-    with open(template_path, encoding="utf-8") as f:
-        template = f.read()
-    with open(SCHEMA_PATH, encoding="utf-8") as f:
-        schema = json.load(f)
-
-    # תרגום content_types
-    content_type_field = next((f for f in schema if f["field"] == "content_types"), None)
-    label_lookup = {}
-    if content_type_field and "options" in content_type_field:
-        label_lookup = {
-            opt.get("key"): opt.get("ai_prompt") or opt.get("label") or opt.get("key")
-            for opt in content_type_field["options"]
-        }
-
-    # מיזוג נתונים
-    merged = {**user_data, **ai_data}
-
-    if isinstance(merged.get("content_types"), list):
-        labels = [label_lookup.get(k, k) for k in merged["content_types"]]
-        merged["content_types"] = ", ".join(labels)
-
-    for key in ["other_gender", "voice_preference", "vibe"]:
-        merged.setdefault(key, "")
-
-    return template.format(**merged)
     
 def hash_password(password, salt=None):
     if not salt:
@@ -180,12 +144,16 @@ def delete_character(name):
     if not username:
         return jsonify({"error": "Not logged in"}), 403
 
-    char_file = os.path.join(USER_DATA_DIR, username, f"{name}.json")
-    if os.path.exists(char_file):
-        os.remove(char_file)
-        return jsonify({"success": True})
-    return jsonify({"error": "Character not found"}), 404
-    
+    char_dir = os.path.join(USER_DATA_DIR, username, "characters", name)
+
+    if os.path.exists(char_dir) and os.path.isdir(char_dir):
+        try:
+            shutil.rmtree(char_dir)
+            return jsonify({"success": True})
+        except Exception as e:
+            return jsonify({"error": f"Failed to delete character folder: {str(e)}"}), 500
+    else:
+        return jsonify({"error": "Character not found"}), 404    
 
 @app.route("/schema")
 def schema():
@@ -202,11 +170,11 @@ def list_characters():
     if not os.path.exists(user_dir):
         return jsonify({"characters": []})
 
+    char_dir =  os.path.join(user_dir, "characters")
     characters = []
-    for fname in os.listdir(user_dir):
-        if fname.endswith(".json") and not fname.startswith(("auth", "meta", "settings")):
-            char_name = os.path.splitext(fname)[0]
-            characters.append(char_name)
+    for fname in os.listdir(char_dir):
+        char_name = fname
+        characters.append(char_name)
 
     return jsonify({"characters": sorted(characters)})
 
@@ -241,12 +209,17 @@ def save_character():
     user_dir = os.path.join(USER_DATA_DIR, username)
     os.makedirs(user_dir, exist_ok=True)
     character_name = user_data["name"]
+    
+    char_dir = os.path.join(user_dir, "characters", character_name)
+    # יצירת תיקייה אם לא קיימת
+    os.makedirs(char_dir, exist_ok=True)    
+    
 
     combined = {
         "user_profile": user_data,
         "ai_profile": ai_data
     }
-    character_file = os.path.join(user_dir , f"{character_name}.json")
+    character_file = os.path.join(char_dir , f"{character_name}.json")
     with open(character_file, "w", encoding="utf-8") as f:
         json.dump(combined, f, indent=2, ensure_ascii=False)
 
