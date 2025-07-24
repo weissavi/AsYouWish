@@ -124,12 +124,9 @@ def verify_password(password, stored_hash, salt):
 
 @app.route("/", methods=["GET"])
 def index():
-    retUser = None
+    retUser = get_current_user()
     retSchema =[]
     
-    if "username" in session:
-        retUser = get_current_user()
-
     with open(SCHEMA_PATH, "r", encoding="utf-8") as f:
         retSchema = json.load(f)
         
@@ -176,6 +173,19 @@ def create_character_form():
     with open(SCHEMA_PATH, encoding='utf-8') as f:
         schema = json.load(f)
     return render_template("character_creation.html", schema=schema)    
+    
+@app.route("/delete_character/<name>", methods=["DELETE"])
+def delete_character(name):
+    username = get_current_user()
+    if not username:
+        return jsonify({"error": "Not logged in"}), 403
+
+    char_file = os.path.join(USER_DATA_DIR, username, f"{name}.json")
+    if os.path.exists(char_file):
+        os.remove(char_file)
+        return jsonify({"success": True})
+    return jsonify({"error": "Character not found"}), 404
+    
 
 @app.route("/schema")
 def schema():

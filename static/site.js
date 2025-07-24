@@ -54,6 +54,23 @@ function characterListForm() {
       this.loadCharacters();
     },
 
+	async deleteCharacter(name) {
+	  if (!confirm(`Delete ${name}?`)) return;
+	  try {
+		const res = await fetch(`/delete_character/${name}`, { method: 'DELETE' });
+		const data = await res.json();
+		if (data.success) {
+		  this.loadCharacters();
+		  showToast(`Deleted ${name}`);
+		} else {
+		  showToast("Failed to delete.");
+		}
+	  } catch (e) {
+		console.error(e);
+		showToast("Error during deletion.");
+	  }
+	},
+
 
     async loadPrompt(name) {
       this.prompt = "Loading...";
